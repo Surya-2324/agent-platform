@@ -1,0 +1,55 @@
+[project]
+name = "agent-platform"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Surya Prakash Gautam", email = "2604889@brunel.ac.uk" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "litellm>=1.109.1",
+    "psycopg[binary]>=3.3.9",
+    "pydantic>=2.14.3",
+    "pydantic-settings>=2.16.3",
+]
+
+[project.scripts]
+agent-platform = "agent_platform:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pre-commit>=4.7.0",
+    "pytest>=9.2.0",
+    "ruff>=0.17.5",
+]
+# ---------- Ruff: linter + formatter ----------
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle: basic style errors
+    "F",    # pyflakes: unused imports, undefined names (real bugs)
+    "I",    # isort: sorted, grouped imports
+    "B",    # bugbear: likely bugs (e.g. mutable default arguments)
+    "UP",   # pyupgrade: use modern Python syntax
+    "SIM",  # simplify: needlessly complex code
+]
+
+# ---------- mypy: static type checker ----------
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+
+# ---------- pytest ----------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
