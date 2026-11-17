@@ -40,4 +40,4 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     """Create settings once and reuse them everywhere."""
-    return Settings()  # type: ignore[call-arg]
+    return Settings()
