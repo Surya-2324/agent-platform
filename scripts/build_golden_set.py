@@ -8,7 +8,7 @@ import psycopg
 
 from agent_platform.config import get_settings
 
-GOLDEN = Path("evals/tasks/golden_v1.jsonl")
+GOLDEN = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("evals/tasks/golden_v2.jsonl")
 
 
 def normalise(value: Any) -> Any:
